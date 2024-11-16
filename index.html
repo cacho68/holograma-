@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holograma </title>
+    <style>
+        /* Estilos CSS */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            color: #0ff;
+            margin: 0;
+        }
+
+        .hologram {
+            position: relative;
+            font-size: 3em;
+            text-transform: uppercase;
+            color: #0ff;
+            filter: blur(1px);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
+                0 0 20px rgba(0, 255, 255, 0.5),
+                0 0 30px #0ff,
+                0 0 40px #0ff,
+                0 0 50px #0ff;
+            animation: flicker 2s infinite;
+        }
+
+        /* Efecto de parpadeo */
+        @keyframes flicker {
+
+            0%,
+            100% {
+                opacity: 0.9;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Desplazamiento vertical */
+        .hologram::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            color: #0ff;
+            opacity: 0.3;
+            filter: blur(3px);
+            animation: hologramShift 3s infinite;
+        }
+
+        @keyframes hologramShift {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contenedor de holograma -->
+    <div class="hologram" data-text="FASHION STORE">
+        <h1>FASHION STORE</h1>
+    </div>
+
+    <script>
+        // Efecto de vibración en el holograma con JavaScript
+        setInterval(() => {
+            const hologram = document.querySelector('.hologram');
+            hologram.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px)`;
+        }, 50);
+    </script>
+</body>
+
+</html>
